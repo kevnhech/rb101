@@ -1,0 +1,40 @@
+1) immediate_family = family.select do |k, v|
+     k == :sisters || k == :brothers
+   end
+
+   arr = immediate_family.values.flatten
+
+   p arr
+
+2) The difference is that merge temporarily merges the hashes while merge! permanently merges the hashes.
+
+3) opposites = {positive: "negative", up: "down", right: "left"}
+
+   opposites.each_key { |key| puts key }
+   opposites.each_value { |value| puts value }
+   opposites.each { |key, value| puts "The opposite of #{key} is #{value}" }
+
+4) person[:name]
+
+5) ssbm = { :fox => 1, :falco => 2, :puff => 3 }
+   ssbm.has_value?(2)
+
+6) The differences between the two hashes is hash number 1 uses the new function added in 1.9, "x:" while the second hash uses the hash rocket, "x =>".
+
+7) B.
+
+8) result = {}
+
+   words.each do |word|
+     key = word.split('').sort.join
+     if result.has_key?(key)
+       result[key].push(word)
+     else
+       result[key] = [word]
+     end
+   end
+
+   result.each_value do |v|
+     puts "------"
+     p v
+   end

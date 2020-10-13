@@ -1,0 +1,16 @@
+1) It executes the numbers 1, 2, 3, 4, 5.
+
+2) x = ""
+   while x != "STOP" do
+     puts "What's your name?"
+     answer = gets.chomp
+     puts "What was that?"
+     x = gets.chomp
+   end
+
+3) def countdown(num)
+     while num >= 0
+       puts num
+       num -= 1
+     end
+   end

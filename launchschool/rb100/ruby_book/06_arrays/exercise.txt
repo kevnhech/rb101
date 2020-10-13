@@ -1,0 +1,26 @@
+1) if arr.include?(number)
+     puts "#{number} is indeed in the array."
+   end
+
+2) 1. returns [["b"], ["b", 2], ["b", 3], ["a", 1], ["a", 2], ["a", 3]] 2. returns [[["b"], [1, 2, 3]], [["b", 2], [1, 2, 3]], [["b", 3], [1, 2, 3]], [["a", 1], [1, 2, 3]], [["a", 2], [1, 2, 3]], [["a", 3], [1, 2, 3]]]
+
+3) arr[1][0] or arr.last.first
+
+4) 1. returns 3... 2. returns an error... 3. returns 8.
+
+5) a = "e", b = "A", c = nil.
+
+6) The problem is in the bracket. You're supposed to use an index integer to specifically reassign the string to another one.
+
+7) siblings = ["Jona", "Tati", "Kevin", "Kayla"]
+   siblings.each_with_index { |val, idx| puts "#{idx+1}. #{val}" }
+
+8) arr = [1, 2, 3, 4]
+   new_arr = []
+
+   arr.each do |n|
+     new_arr << n + 2
+   end
+
+   p arr
+   p new_arr

@@ -1,0 +1,19 @@
+1) def greeting(name)
+     "Hello, " + name + ". How are you doing?"
+   end
+
+   puts greeting("Kevin")
+
+2) The first expression is a variable being assigned to 2. The second expression prints 2. The third expression prints "Joe". The fourth expression is being assigned to string "four" and the fifth expression prints string "nothing"
+
+3) def multiply(x, y)
+     x * y
+   end
+
+   puts multiply(2, 2)
+
+4) It prints out nil. Nothing.
+
+5) Editing the method, it prints words and nil on the screen.
+
+6) The error tells me the method needs two arguments.
