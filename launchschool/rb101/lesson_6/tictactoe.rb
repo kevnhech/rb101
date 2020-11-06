@@ -3,6 +3,9 @@ require 'pry'
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
+WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
+                [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # cols
+                [[1, 5, 9], [3, 5, 7]]              # diagonals
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -60,8 +63,34 @@ def player_places_piece!(brd)
   brd[square] = PLAYER_MARKER
 end
 
+def find_at_risk_square(line, board, marker)
+  if board.values_at(*line).count(marker) == 2
+    board.select { |k, v| line.include?(k) && v == INITIAL_MARKER }.keys.first
+  end
+end
+
 def computer_places_piece!(brd)
-  square = empty_squares(brd).sample
+  square = nil
+
+  # defense first
+  WINNING_LINES.each do |line|
+    square = find_at_risk_square(line, brd, PLAYER_MARKER)
+    break if square
+  end
+
+  # offense
+  if !square
+    WINNING_LINES.each do |line|
+      square = find_at_risk_square(line, brd, COMPUTER_MARKER)
+      break if square
+    end
+  end
+
+  # just pick a random square
+  if !square
+    square = empty_squares(brd).sample
+  end
+
   brd[square] = COMPUTER_MARKER
 end
 
@@ -69,16 +98,8 @@ def board_full?(brd)
   empty_squares(brd).empty?
 end
 
-def someone_won?(brd)
-  !!detect_winner(brd)
-end
-
 def detect_winner(brd)
-  winning_lines = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
-                  [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # cols
-                  [[1, 5, 9], [3, 5, 7]]              # diagonals
-
-  winning_lines.each do |line|
+  WINNING_LINES.each do |line|
     if brd.values_at(*line).count(PLAYER_MARKER) == 3
       return 'Player'
     elsif brd.values_at(*line).count(COMPUTER_MARKER) == 3
@@ -86,6 +107,10 @@ def detect_winner(brd)
     end
   end
   nil
+end
+
+def won_the_round?(brd)
+  !!detect_winner(brd)
 end
 
 player_score = 0
@@ -97,11 +122,13 @@ loop do
   loop do
     display_board(board)
 
+    prompt "Player: #{player_score}, Computer: #{computer_score}."
+
     player_places_piece!(board)
-    break if someone_won?(board) || board_full?(board)
+    break if won_the_round?(board) || board_full?(board)
 
     computer_places_piece!(board)
-    break if someone_won?(board) || board_full?(board)
+    break if won_the_round?(board) || board_full?(board)
   end
 
   display_board(board)
@@ -111,9 +138,6 @@ loop do
   elsif detect_winner(board) == 'Computer'
     computer_score += 1
   end
-
-  prompt "Player score: #{player_score}"
-  prompt "Computer score: #{computer_score}"
 
   if player_score == 5 || computer_score == 5
     prompt "#{detect_winner(board)} won!"
