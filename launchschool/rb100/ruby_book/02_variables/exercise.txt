@@ -1,9 +1,0 @@
-1) 
-
-2) 
-
-3) 
-
-4) 
-
-5) On the first case, x prints out 3. At first, x is assigned to integer value 0. Then, iteration .times is called upon integer 3. Do is called after that, which opens up a block of code, and inside that block it's going to add x and 1 three times. Once that adding is over, x is finally equal to 3. In the second case, x prints out... nothing! The program experiences an error. How? Well, just because variable x is assigned to equal to y doesn't mean it can be printed for one reason, and that's the fact that variable x is not assigned in the outer scope. Because local variable x is not assigned in the outer scope but instead an inner scope, it cannot be called locally outside of that scope.
