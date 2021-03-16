@@ -1,12 +1,15 @@
+# Build a program that displays when the user will retire and how many years she has to work till retirement.
+
+# ask the user their age
+# ask the user what age they would like to retire
+# inform the user the current year, then inform them when they will retire by adding the current year plus the subtraction of the user age and when they want to retire
+# inform the user how many years they have by subtracting the user age and the age they wish to retire
+
 print "What is your age? "
-age = gets.chomp.to_i
-
+age = gets.to_i
 print "At what age would you like to retire? "
-retirement = gets.chomp.to_i
+retired_age = gets.to_i
+year = Time.new.year
 
-current_year = Time.now.year
-retirement_year = current_year + (retirement - age)
-years_left = retirement_year - current_year
-
-puts "It's #{current_year}. You will retire in #{retirement_year}."
-puts "You have only #{years_left} years of work to go!"
+puts "It's #{year}. You will retire in #{year + (retired_age - age)}."
+puts "You have only #{retired_age - age} years of work to go!"
