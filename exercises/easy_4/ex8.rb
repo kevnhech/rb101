@@ -13,15 +13,14 @@ end
 
 def string_to_signed_integer(string)
   if string[0] == "+"
-    string.split.shift
-    string_to_integer(string)
+    string_to_integer(string[1..-1])
   elsif string[0] == "-"
-    string_to_integer(-string)
+    -string_to_integer(string[1..-1])
   else
     string_to_integer(string)
   end
 end
 
-string_to_signed_integer('4321') == 4321
-string_to_signed_integer('-570') == -570
-string_to_signed_integer('+100') == 100
+p string_to_signed_integer('4321') == 4321
+p string_to_signed_integer('-570') == -570
+p string_to_signed_integer('+100') == 100
