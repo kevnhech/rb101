@@ -1,30 +1,49 @@
-# input: string
-# output: integer(s)
-# rules: all operations are integer operations. initialize the register to 0
-
-# Algorithm:
-#   minilang method
-#   ===============
-#     - initialize variable `register` that will equal to 0
-#     - initialize variable `arr` that will be an empty array
-#     - convert the argument to an array, then start a loop that will iterate over every subarray
-#       - start a case statement on every subarray and follow the appropriate formula
-#     - end the outer loop
-
-def minilang(program)
-  register = 0
+def minilang(string)
   stack = []
-  program.split.each do |token|
+  num = 0
+  string.split.each do |token|
     case token
-    when 'ADD' then register += stack.pop
-    when 'DIV' then register /= stack.pop
-    when 'MULT' then register *= stack.pop
-    when 'MOD' then register %= stack.pop
-    when 'SUB' then register -= stack.pop
-    when 'PUSH' then stack.push(register)
-    when 'POP' then register = stack.pop
-    when 'PRINT' then puts register
-    else register = token.to_i
+    when 'PUSH' then stack.push(num)
+    when 'ADD' then num += stack.pop
+    when 'SUB' then num -= stack.pop
+    when 'MULT' then num *= stack.pop
+    when 'DIV' then num /= stack.pop
+    when 'MOD' then num %= stack.pop
+    when 'POP' then num = stack.pop
+    when 'PRINT' then puts num
+    else num = token.to_i
     end
   end
 end
+
+minilang('PRINT')
+# 0
+
+minilang('5 PUSH 3 MULT PRINT')
+# 15
+
+minilang('5 PRINT PUSH 3 PRINT ADD PRINT')
+# 5
+# 3
+# 8
+
+minilang('5 PUSH POP PRINT')
+# 5
+
+minilang('3 PUSH 4 PUSH 5 PUSH PRINT ADD PRINT POP PRINT ADD PRINT')
+# 5
+# 10
+# 4
+# 7
+
+minilang('3 PUSH PUSH 7 DIV MULT PRINT ')
+# 6
+
+minilang('4 PUSH PUSH 7 MOD MULT PRINT ')
+# 12
+
+minilang('-3 PUSH 5 SUB PRINT')
+# 8
+
+minilang('6 PUSH')
+# (nothing printed; no PRINT commands)

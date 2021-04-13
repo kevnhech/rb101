@@ -1,30 +1,33 @@
-# input: string
-# output: string with any sequence of the words zero to nine converted to a string of digits
-# rules: the digits will be strings, not integers
+# Write a method that takes a sentence string as input, and returns the same string with any sequence of the words 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine' converted to a string of digits
 
-# Algorithm:
-#   word_to_digit method
-#   ====================
-#     - convert the argument to an array, iterate over every sub argument then assign the result to variable `result`
-#       - initialize a case statement where strings `zero` to `nine` will equal to strings `0` to `9`
-#     - close the outer loop
-#     - return variable `result` in string form
+# input: string
+# output: string
+
+# initialize empty string `str`
+# initialize `idx` and assign it to integer `0`
+# invoke a loop
+#   if the argument equates to any number thats a word, append the digit version to `str`
+#   otherwise, append the argument strings to `str`
+# end the block
 
 def word_to_digit(string)
-  result = string.split.map do |num|
-    case num
-    when "zero" then "0"
-    when "one" then "1"
-    when "two" then "2"
-    when "three" then "3"
-    when "four." then "4."
-    when "five" then "5"
-    when "six" then "6"
-    when "seven" then "7"
-    when "eight" then "8"
-    when "nine" then "9"
-    else num
+  str = string.split.map do |word|
+    case word
+    when 'zero' then '0'
+    when 'one' then '1'
+    when 'two' then '2'
+    when 'three' then '3'
+    when 'four' then '4'
+    when 'four.' then '4.'
+    when 'five' then '5'
+    when 'six' then '6'
+    when 'seven' then '7'
+    when 'eight' then '8'
+    when 'nine' then '9'
+    else word
     end
   end
-  result.join(' ')
+  str.join(' ')
 end
+
+p word_to_digit('Please call me at five five five one two three four. Thanks.') == 'Please call me at 5 5 5 1 2 3 4. Thanks.'
